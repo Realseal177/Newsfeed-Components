@@ -10,13 +10,16 @@ let menuItems = [
 ];
 const button = document.querySelector('.menu-button');
 function menuMaker(array) {
-  // console.log(array);
   const menu = document.createElement("div");
   const uList = document.createElement("ul");
-  const list = document.createElement("li");
+
+  array.forEach(item => {
+    const list = document.createElement("li");
+    list.textContent = item
+    uList.appendChild(list);
+  });
 
   menu.appendChild(uList);
-  uList.appendChild(list);
 
   menu.classList.add('menu');
 
@@ -26,10 +29,12 @@ function menuMaker(array) {
   return menu;
 }
 
-menuItems.forEach(item => {
-  const newMenu = menuMaker(item);
-  document.querySelector('.header').appendChild(newMenu);
-});
+const menuElements = menuMaker(menuItems);
+const header = document.querySelector('.header');
+header.appendChild(menuElements);
+
+// Can also do ......
+// document.querySelector('.header').appendChild(menuMaker(menuItems));
 
 
 
