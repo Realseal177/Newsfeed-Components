@@ -86,23 +86,67 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'The Hobbit',
+    date: 'T.A. 2941',
+    firstParagraph: `Tempt escaped fortune Hobbits elected closed lights delved guarding walls. Sulfur enchanted finds fat trusted sticking funny contract hunt Helm Hammerhand league. One does not simply walk into Mordor. Woman distinct Númenor?`,
+
+    secondParagraph: `Alerts ferret maid Thror rebuilt? Elderly chap. Big grey beard, pointy hat. Sneak-thief ours strengthened idly panic enchanting pity want try burn Dale inbreds. Sure thicket Crebain prizewinners concludes listening wasted hole manage attacked sprinkle biting! Shines Hobbit's stands reforge damage ever.`,
+
+    thirdParagraph: `Moment lessened answering Sul intact whips equal wanting airmuch. Higher Durin's salted tend infected. Increase 500 returning cave markets dank Proudfoots quest bestowing mongrel scheme. Size received stabbed guarantee trailing blades grant precautions sadness Beorn's. Ever-watchful night's sending Took following handled familiar burn 3434 goes fortunes. There and Back Again. A Hobbit's Tale.`
   }
 ];
 
+// Step 1: Write a component called 'articleMaker' to create an article. Your component is a function that takes an article object as its only argument, and returns a DOM node looking like the one below:
+
+function articleMaker (artObj) {
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const articleP1 = document.createElement('p');
+  const articleP2 = document.createElement('p');
+  const articleP3 = document.createElement('p');
+  const articleP4 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(articleP1);
+  article.appendChild(articleP2);
+  article.appendChild(articleP3);
+  article.appendChild(articleP4);
+  article.appendChild(expandButton);
+
+  title.textContent = artObj.title
+  date.textContent = artObj.date
+  articleP1.textContent = artObj.firstParagraph
+  articleP2.textContent = artObj.secondParagraph
+  articleP3.textContent = artObj.thirdParagraph
+  expandButton.textContent = '+'
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+data.forEach(article => {
+  document.querySelector('div.articles').appendChild(articleMaker(article));
+});
+  /**
+   * const article = document.querySelector('div.articles')
+   * const newArticle = articleMaker(article);
+   * article.appendChild(articleList);
+   */
+  
+
 /*
-  Step 1: Write a component called 'articleMaker' to create an article.
-  Your component is a function that takes an article object as its only argument,
-  and returns a DOM node looking like the one below:
-
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
-
-    {three separate paragraph elements}
-
-    <span class="expandButton">+</span>
-  </div>
-
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
@@ -113,4 +157,15 @@ const data = [
 
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
+*/
+
+/*
+  <div class="article">
+    <h2>{title of the article}</h2>
+    <p class="date">{date of the article}</p>
+
+    {three separate paragraph elements}
+
+    <span class="expandButton">+</span>
+  </div>
 */
